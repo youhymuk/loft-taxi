@@ -1,7 +1,7 @@
 import React from 'react';
 
-const MapPage = (): JSX.Element => (
-    <h1>Карта</h1>
-);
+import Map from 'app/features/map/Map';
+
+const MapPage = (): JSX.Element => <Map />;
 
 export default MapPage;

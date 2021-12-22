@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 
 import logoIcon from 'assets/images/logo-icon.svg';
 import logoText from 'assets/images/logo-text.svg';
@@ -10,8 +11,8 @@ type PropsType = {
     logoImgClassName?: string,
 }
 
-const Logo = ({logoImgClassName}: PropsType): JSX.Element => (
-    <div className={css.logo}>
+const Logo = ({logoImgClassName, className}: PropsType): JSX.Element => (
+    <div className={classNames(css.logo, className)}>
         <img className={logoImgClassName} src={logoIcon} alt="Loft taxi logo icon" />
         <img src={logoText} alt="Loft taxi logo text" />
     </div>

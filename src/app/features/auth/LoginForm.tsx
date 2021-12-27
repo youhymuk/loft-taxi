@@ -1,30 +1,35 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
-import Button from "app/common/components/Button/Button";
+import Button from 'app/common/components/Button/Button';
 
 type LoginPropsType = {
-    handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void,
-}
+    handleSubmit: (email: string, password: string) => void;
+    setIsNewUser: (isNewUser: boolean) => void;
+};
 
-const LoginForm = ({handleSubmit}: LoginPropsType): JSX.Element => {
-
+const LoginForm = ({ handleSubmit, setIsNewUser }: LoginPropsType): JSX.Element => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const handleEmailInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setEmail(e.target.value)
-    }
+        setEmail(e.target.value);
+    };
 
     const handlePasswordInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setPassword(e.target.value)
-    }
+        setPassword(e.target.value);
+    };
+
+    const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+        e.preventDefault();
+        handleSubmit(email, password);
+    };
+
+    const handleRegistrationButtonClick = () => setIsNewUser(true);
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
-                <h1>
-                    Войти
-                </h1>
+            <form onSubmit={handleFormSubmit}>
+                <h1>Войти</h1>
                 <label>
                     Email
                     <input
@@ -46,13 +51,16 @@ const LoginForm = ({handleSubmit}: LoginPropsType): JSX.Element => {
                     />
                 </label>
                 <Button type="button">Забыли пароль?</Button>
-                <Button type="submit">
-                    Войти
-                </Button>
+                <Button type="submit">Войти</Button>
             </form>
-            <p>Новый пользователь? <Button type="link">Регистрация</Button></p>
+            <p>
+                Новый пользователь?{' '}
+                <Button onClick={handleRegistrationButtonClick} type="button">
+                    Регистрация
+                </Button>
+            </p>
         </>
-    )
-}
+    );
+};
 
 export default LoginForm;

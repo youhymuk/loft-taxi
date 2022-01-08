@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 
+import { routePaths } from 'app/routes';
 import Button from 'app/common/components/Button/Button';
+import { useDispatch } from 'react-redux';
 
-type LoginPropsType = {
-    handleSubmit: (email: string, password: string) => void;
-    setIsNewUser: (isNewUser: boolean) => void;
-};
+import { authorize } from 'app/features/auth/store/authActions';
 
-const LoginForm = ({ handleSubmit, setIsNewUser }: LoginPropsType): JSX.Element => {
+const LoginForm = (): JSX.Element => {
+    const dispatch = useDispatch();
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -21,10 +22,8 @@ const LoginForm = ({ handleSubmit, setIsNewUser }: LoginPropsType): JSX.Element 
 
     const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
-        handleSubmit(email, password);
+        dispatch(authorize(email, password));
     };
-
-    const handleRegistrationButtonClick = () => setIsNewUser(true);
 
     return (
         <>
@@ -55,7 +54,7 @@ const LoginForm = ({ handleSubmit, setIsNewUser }: LoginPropsType): JSX.Element 
             </form>
             <p>
                 Новый пользователь?{' '}
-                <Button onClick={handleRegistrationButtonClick} type="button">
+                <Button type="link" to={routePaths.registrationPage()}>
                     Регистрация
                 </Button>
             </p>

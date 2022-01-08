@@ -8,6 +8,10 @@
     background-color: #000;
 }
 
+.headerLogo {
+    padding: 0;
+}
+
 .headerLogoImg {
     width: 61px;
     height: 61px;
@@ -30,5 +34,5 @@
 }
 
 .headerNavLinkActive {
-    color: #FDBF5A;
+    color: #fdbf5a;
 }

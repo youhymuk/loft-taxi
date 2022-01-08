@@ -1,9 +1,10 @@
 import React from 'react';
 
+import { routePaths } from 'app/routes';
 import Button from 'app/common/components/Button/Button';
 
 type RegistrationPropsType = {
-    handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+    handleSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
 };
 
 const RegistrationForm = ({ handleSubmit }: RegistrationPropsType): JSX.Element => {
@@ -27,7 +28,10 @@ const RegistrationForm = ({ handleSubmit }: RegistrationPropsType): JSX.Element 
                 <Button type="submit">Зарегистрироваться</Button>
             </form>
             <p>
-                Уже зарегестрированны? <Button type="link">Войти</Button>
+                Уже зарегестрированны?{' '}
+                <Button type="link" to={routePaths.loginPage()}>
+                    Войти
+                </Button>
             </p>
         </>
     );

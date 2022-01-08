@@ -1,35 +1,40 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
+import { routePaths } from 'app/routes';
+import { logOut } from 'app/features/auth/store/authActions';
 import Logo from 'app/common/components/Logo/Logo';
 import Button from '../Button/Button';
 
 import css from 'app/common/components/Header/Header.module.css';
+import { NavLink } from 'react-router-dom';
 
-type HeaderPropsType = {
-    redirectTo: (page: string) => void;
-    logOut: () => void;
-};
+const Header = (): JSX.Element => {
+    const dispatch = useDispatch();
 
-const Header = ({ redirectTo, logOut }: HeaderPropsType): JSX.Element => {
+    const handleLogOut = () => {
+        dispatch(logOut());
+    };
+
     return (
         <header className={css.header}>
-            <a>
+            <Button className={css.headerLogo} type="link" to={routePaths.mapPage()}>
                 <Logo logoImgClassName={css.headerLogoImg} />
-            </a>
+            </Button>
             <nav>
                 <ul className={css.headerNavList}>
                     <li className={css.headerNavListItem}>
-                        <Button type="button" className={css.headerNavLink} onClick={() => redirectTo('map')}>
+                        <NavLink className={css.headerNavLink} to={routePaths.mapPage()}>
                             Карта
-                        </Button>
+                        </NavLink>
                     </li>
                     <li className={css.headerNavListItem}>
-                        <Button type="button" className={css.headerNavLink} onClick={() => redirectTo('profile')}>
+                        <NavLink className={css.headerNavLink} to={routePaths.profilePage()}>
                             Профиль
-                        </Button>
+                        </NavLink>
                     </li>
                     <li className={css.headerNavListItem}>
-                        <Button type="button" className={css.headerNavLink} onClick={logOut}>
+                        <Button type="button" className={css.headerNavLink} onClick={handleLogOut}>
                             Выйти
                         </Button>
                     </li>

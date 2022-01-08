@@ -1,30 +1,16 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 
-import { LoginForm, RegistrationForm, AuthContext } from 'app/features';
+import { LoginForm, RegistrationForm } from 'app/features/auth/components';
+import { selectIsAuthorized } from 'app/features/auth/store/authSelector';
+import { routePaths } from 'app/routes';
 
-type AuthPagePropsType = {
-    redirectTo: (page: string) => void;
-};
+type AuthPagePropsType = { registration?: boolean };
 
-const AuthPage = ({ redirectTo }: AuthPagePropsType): JSX.Element => {
-    const [isNewUser, setIsNewUser] = useState(false);
-
-    const { logIn, isLoggedIn } = useContext(AuthContext);
-
-    const handleLoginFormSubmit = (email: string, password: string): void => {
-        logIn(email, password);
-        isLoggedIn && redirectTo('map');
-    };
-    const handleRegistrationFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-        e.preventDefault();
-        redirectTo('map');
-    };
-
-    return isNewUser ? (
-        <RegistrationForm handleSubmit={handleRegistrationFormSubmit} />
-    ) : (
-        <LoginForm handleSubmit={handleLoginFormSubmit} setIsNewUser={setIsNewUser} />
-    );
+const AuthPage = ({ registration = false }: AuthPagePropsType) => {
+    const isAuthorized = useSelector(selectIsAuthorized);
+    return isAuthorized ? <Navigate to={routePaths.mapPage()} /> : registration ? <RegistrationForm /> : <LoginForm />;
 };
 
 export default AuthPage;

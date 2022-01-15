@@ -1,2 +1,4 @@
-export const SET_USER_DATA: string = 'SET_USER_NAME';
-export const UPLOAD_USER_DATA: string = 'UPLOAD_USER_DATA';
+export const SET_CARD_DATA: string = 'SET_CARD_DATA';
+export const UPLOAD_CARD_DATA_REQUEST: string = 'UPLOAD_CARD_DATA_REQUEST';
+export const UPLOAD_CARD_DATA_SUCCESS: string = 'UPLOAD_CARD_DATA_SUCCESS';
+export const START_UPLOAD_CARD_DATA: string = 'START_UPLOAD_CARD_DATA';

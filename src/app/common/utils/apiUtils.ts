@@ -11,6 +11,9 @@ export const authAPI = {
         const { data } = await instance.post('auth/', credentials);
         return data;
     },
+};
+
+export const cardAPI = {
     async uploadUserData(userData: {
         cardNumber: string;
         expiryDate: string;

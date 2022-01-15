@@ -1,29 +1,27 @@
 import { AuthActionsType, AuthStateType } from 'app/features/auth/types';
-import { LOG_IN, LOG_OUT, SET_AUTH_TOKEN, TOGGLE_IS_LOADING } from 'app/features/auth/constants';
+import { LOG_IN_REQUEST, LOG_OUT, LOG_IN_SUCCESS } from 'app/features/auth/constants';
 
 const initialState: AuthStateType = { isAuthorized: false, isLoading: false, token: '' };
 
 const authReducer = (state: AuthStateType = initialState, { type, payload = {} }: AuthActionsType) => {
     switch (type) {
-        case LOG_IN:
+        case LOG_IN_REQUEST:
             return {
                 ...state,
-                isAuthorized: true,
+                isLoading: true,
             };
         case LOG_OUT:
             return {
                 ...state,
                 isAuthorized: false,
+                token: '',
             };
-        case SET_AUTH_TOKEN:
+        case LOG_IN_SUCCESS:
             return {
                 ...state,
+                isAuthorized: true,
+                isLoading: false,
                 token: payload.token,
-            };
-        case TOGGLE_IS_LOADING:
-            return {
-                ...state,
-                isLoading: payload.isLoading,
             };
         default:
             return state;

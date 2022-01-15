@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 
 import { routePaths } from 'app/routes';
-import Button from 'app/common/components/Button/Button';
+import { Button, Loader } from 'app/common/components';
 import { useDispatch } from 'react-redux';
 
 import { authorize } from 'app/features/auth/store/authActions';
 
-const LoginForm = (): JSX.Element => {
+type LoginPropsType = { isLoading: boolean };
+
+const LoginForm = ({ isLoading }: LoginPropsType): JSX.Element => {
     const dispatch = useDispatch();
 
     const [email, setEmail] = useState('');
@@ -28,6 +30,7 @@ const LoginForm = (): JSX.Element => {
     return (
         <>
             <form onSubmit={handleFormSubmit}>
+                {isLoading && <Loader />}
                 <h1>Войти</h1>
                 <label>
                     Email

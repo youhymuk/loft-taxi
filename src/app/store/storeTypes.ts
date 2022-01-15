@@ -1,4 +1,5 @@
 import { AuthStateType } from 'app/features/auth/types';
+import { ProfileStateType } from 'app/features/profile/types';
 
 export type StoreActionTemplateType = {
     type: string;
@@ -10,4 +11,5 @@ export type StoreActionTemplateType = {
 
 export type StoreType = {
     auth: AuthStateType;
+    profile: ProfileStateType;
 };

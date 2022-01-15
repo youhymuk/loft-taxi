@@ -13,7 +13,6 @@ const App: React.FC = (): JSX.Element => {
     return (
         <MuiThemeProvider theme={theme}>
             <div className="app">
-                {isLoading && <Loader />}
                 <Router />
             </div>
         </MuiThemeProvider>

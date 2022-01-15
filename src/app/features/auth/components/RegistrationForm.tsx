@@ -1,16 +1,18 @@
 import React from 'react';
 
 import { routePaths } from 'app/routes';
-import Button from 'app/common/components/Button/Button';
+import { Button, Loader } from 'app/common/components';
 
 type RegistrationPropsType = {
     handleSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
+    isLoading: boolean;
 };
 
-const RegistrationForm = ({ handleSubmit }: RegistrationPropsType): JSX.Element => {
+const RegistrationForm = ({ handleSubmit, isLoading }: RegistrationPropsType): JSX.Element => {
     return (
         <>
             <form onSubmit={handleSubmit}>
+                {isLoading && <Loader />}
                 <h1>Регистрация</h1>
                 <label>
                     Email*

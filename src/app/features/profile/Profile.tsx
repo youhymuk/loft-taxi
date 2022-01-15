@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 //@ts-ignore
 import { MCIcon } from 'loft-taxi-mui-theme';
-import { Button } from 'app/common/components';
-import { selectAuthToken } from 'app/features/auth/store/authSelector';
-import { setUserData, uploadUserData } from 'app/features/profile/store/profileActions';
+import { Button, Loader } from 'app/common/components';
+import { selectAuthToken, selectIsLoading } from 'app/features/auth/store/authSelector';
+import { setUserData, uploadCardDataRequest } from 'app/features/profile/store/profileActions';
 
 import logoIcon from 'app/assets/images/logo-icon.svg';
 import css from 'app/features/profile/Profile.module.css';
@@ -17,6 +17,7 @@ const Profile = () => {
     const [cvc, setCvc] = useState('');
 
     const token = useSelector(selectAuthToken);
+    const isLoading = useSelector(selectIsLoading);
 
     const handleUserNameInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setCardName(e.target.value);
@@ -38,7 +39,7 @@ const Profile = () => {
         const cardData = { cardNumber, expiryDate, cardName, cvc };
         e.preventDefault();
         dispatch(setUserData(cardData));
-        dispatch(uploadUserData({ ...cardData, token }));
+        dispatch(uploadCardDataRequest({ ...cardData, token }));
     };
     return (
         <section className={css.profile}>
@@ -47,6 +48,7 @@ const Profile = () => {
                 <p>Введите платежные данные</p>
             </header>
             <div className={css.profileContentWrap}>
+                {isLoading && <Loader />}
                 <form className={css.profileForm} onSubmit={handleFormSubmit}>
                     <label>
                         Имя владельца

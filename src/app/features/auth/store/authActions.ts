@@ -1,8 +1,8 @@
-import { LOG_IN, LOG_OUT, AUTHORIZE, TOGGLE_IS_LOADING, SET_AUTH_TOKEN } from 'app/features/auth/constants';
+import { LOG_IN_REQUEST, LOG_OUT, AUTHORIZE, LOG_IN_SUCCESS } from 'app/features/auth/constants';
 import { AuthActionsType } from 'app/features/auth/types';
 
-export const logIn = (): AuthActionsType => ({
-    type: LOG_IN,
+export const logInRequest = (): AuthActionsType => ({
+    type: LOG_IN_REQUEST,
 });
 
 export const logOut = (): AuthActionsType => ({
@@ -14,12 +14,7 @@ export const authorize = (email: string, password: string): AuthActionsType => (
     payload: { email, password },
 });
 
-export const setAuthToken = (token: string): AuthActionsType => ({
-    type: SET_AUTH_TOKEN,
+export const setLoginSuccess = (token: string): AuthActionsType => ({
+    type: LOG_IN_SUCCESS,
     payload: { token },
-});
-
-export const toggleIsLoading = (isLoading: boolean): AuthActionsType => ({
-    type: TOGGLE_IS_LOADING,
-    payload: { isLoading },
 });

@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 
-import Button from 'app/common/components/Button/Button';
+import { routePaths } from 'app/routes';
+import { Button, Loader } from 'app/common/components';
+import { useDispatch } from 'react-redux';
 
-type LoginPropsType = {
-    handleSubmit: (email: string, password: string) => void;
-    setIsNewUser: (isNewUser: boolean) => void;
-};
+import { authorize } from 'app/features/auth/store/authActions';
 
-const LoginForm = ({ handleSubmit, setIsNewUser }: LoginPropsType): JSX.Element => {
+type LoginPropsType = { isLoading: boolean };
+
+const LoginForm = ({ isLoading }: LoginPropsType): JSX.Element => {
+    const dispatch = useDispatch();
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -21,14 +24,13 @@ const LoginForm = ({ handleSubmit, setIsNewUser }: LoginPropsType): JSX.Element 
 
     const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
-        handleSubmit(email, password);
+        dispatch(authorize(email, password));
     };
-
-    const handleRegistrationButtonClick = () => setIsNewUser(true);
 
     return (
         <>
             <form onSubmit={handleFormSubmit}>
+                {isLoading && <Loader />}
                 <h1>Войти</h1>
                 <label>
                     Email
@@ -55,7 +57,7 @@ const LoginForm = ({ handleSubmit, setIsNewUser }: LoginPropsType): JSX.Element 
             </form>
             <p>
                 Новый пользователь?{' '}
-                <Button onClick={handleRegistrationButtonClick} type="button">
+                <Button type="link" to={routePaths.registrationPage()}>
                     Регистрация
                 </Button>
             </p>

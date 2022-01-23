@@ -1,5 +1,6 @@
 import { AuthStateType } from 'app/features/auth/types';
-import { ProfileStateType } from 'app/features/profile/types';
+import { MapStateType } from 'app/features/map/types';
+import { CardStateType } from 'app/features/payment/types';
 
 export type StoreActionTemplateType = {
     type: string;
@@ -11,5 +12,6 @@ export type StoreActionTemplateType = {
 
 export type StoreType = {
     auth: AuthStateType;
-    profile: ProfileStateType;
+    card: CardStateType;
+    map: MapStateType;
 };

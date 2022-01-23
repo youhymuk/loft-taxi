@@ -1,20 +1,30 @@
-import { LOG_IN_REQUEST, LOG_OUT, AUTHORIZE, LOG_IN_SUCCESS } from 'app/features/auth/constants';
+import { AUTH_REQUEST, SIGN_UP, AUTH_SUCCESS, AUTH_ERROR, SIGN_OUT, SIGN_IN } from 'app/features/auth/constants';
 import { AuthActionsType } from 'app/features/auth/types';
 
-export const logInRequest = (): AuthActionsType => ({
-    type: LOG_IN_REQUEST,
+export const makeAuthRequest = (): AuthActionsType => ({
+    type: AUTH_REQUEST,
 });
 
-export const logOut = (): AuthActionsType => ({
-    type: LOG_OUT,
+export const signUp = (email: string, password: string, name: string, surname: string): AuthActionsType => ({
+    type: SIGN_UP,
+    payload: { email, password, name, surname },
 });
 
-export const authorize = (email: string, password: string): AuthActionsType => ({
-    type: AUTHORIZE,
+export const signIn = (email: string, password: string): AuthActionsType => ({
+    type: SIGN_IN,
     payload: { email, password },
 });
 
-export const setLoginSuccess = (token: string): AuthActionsType => ({
-    type: LOG_IN_SUCCESS,
+export const signOut = (): AuthActionsType => ({
+    type: SIGN_OUT,
+});
+
+export const setAuthToken = (token: string): AuthActionsType => ({
+    type: AUTH_SUCCESS,
     payload: { token },
+});
+
+export const setAuthError = (error: string): AuthActionsType => ({
+    type: AUTH_ERROR,
+    payload: { error },
 });

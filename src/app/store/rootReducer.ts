@@ -1,5 +1,7 @@
-import auth from 'app/features/auth/store/authReducer';
-import profile from 'app/features/profile/store/profileReducer';
 import { combineReducers } from 'redux';
 
-export const rootReducer = combineReducers({ auth, profile });
+import auth from 'app/features/auth/store/authReducer';
+import card from 'app/features/payment/store/cardReducer';
+import map from 'app/features/map/store/mapReducer';
+
+export const rootReducer = combineReducers({ auth, card, map });

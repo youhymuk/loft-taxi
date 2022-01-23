@@ -7,14 +7,18 @@ const instance = axios.create({
 });
 
 export const authAPI = {
-    async logIn(credentials: { email: string; password: string }) {
+    async signIn(credentials: { email: string; password: string }) {
         const { data } = await instance.post('auth/', credentials);
+        return data;
+    },
+    async signUp(credentials: { email: string; password: string; name: string }) {
+        const { data } = await instance.post('register/', credentials);
         return data;
     },
 };
 
 export const cardAPI = {
-    async uploadUserData(userData: {
+    async uploadCardData(userData: {
         cardNumber: string;
         expiryDate: string;
         cardName: string;
@@ -22,6 +26,21 @@ export const cardAPI = {
         token: string;
     }) {
         const { data } = await instance.post('card/', userData);
-        return data.success;
+        return data;
+    },
+    async getCardData(token: string) {
+        const { data } = await instance.get(`card/?token=${token}`);
+        return data;
+    },
+};
+
+export const mapAPI = {
+    async getAddressList() {
+        const { data } = await instance.get('addressList');
+        return data;
+    },
+    async getCoordinates(from: string, to: string) {
+        const { data } = await instance.get(`route?address1=${from}&address2=${to}`);
+        return data;
     },
 };

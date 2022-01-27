@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import { routePaths } from 'app/routes';
-import { logOut } from 'app/features/auth/store/authActions';
+import { signOut } from 'app/features/auth/store/authActions';
 import Logo from 'app/common/components/Logo/Logo';
 import Button from '../Button/Button';
 
@@ -13,7 +13,7 @@ const Header = (): JSX.Element => {
     const dispatch = useDispatch();
 
     const handleLogOut = () => {
-        dispatch(logOut());
+        dispatch(signOut());
     };
 
     return (

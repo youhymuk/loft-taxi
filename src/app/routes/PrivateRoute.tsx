@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { selectIsAuthorized } from 'app/features/auth/store/authSelector';
+import { selectAuthToken } from 'app/features/auth/store/authSelector';
 
 import routePaths from './routePaths';
 
@@ -11,9 +11,9 @@ type PrivateRoutePropsType = {
 };
 
 const PrivateRoute = ({ children }: PrivateRoutePropsType): any => {
-    const isAuthorized = useSelector(selectIsAuthorized);
+    const token = useSelector(selectAuthToken);
 
-    return isAuthorized ? children : <Navigate to={routePaths.loginPage()} />;
+    return !!token ? children : <Navigate to={routePaths.signInPage()} />;
 };
 
 export default PrivateRoute;

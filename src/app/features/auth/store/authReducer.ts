@@ -1,27 +1,32 @@
 import { AuthActionsType, AuthStateType } from 'app/features/auth/types';
-import { LOG_IN_REQUEST, LOG_OUT, LOG_IN_SUCCESS } from 'app/features/auth/constants';
+import { AUTH_REQUEST, AUTH_SUCCESS, AUTH_ERROR, SIGN_OUT } from 'app/features/auth/constants';
 
-const initialState: AuthStateType = { isAuthorized: false, isLoading: false, token: '' };
+const initialState: AuthStateType = { isLoading: false, token: '', error: '' };
 
 const authReducer = (state: AuthStateType = initialState, { type, payload = {} }: AuthActionsType) => {
     switch (type) {
-        case LOG_IN_REQUEST:
+        case AUTH_REQUEST:
             return {
                 ...state,
                 isLoading: true,
             };
-        case LOG_OUT:
+        case SIGN_OUT:
             return {
                 ...state,
-                isAuthorized: false,
                 token: '',
             };
-        case LOG_IN_SUCCESS:
+        case AUTH_SUCCESS:
             return {
                 ...state,
-                isAuthorized: true,
                 isLoading: false,
+                error: '',
                 token: payload.token,
+            };
+        case AUTH_ERROR:
+            return {
+                ...state,
+                error: payload.error,
+                isLoading: false,
             };
         default:
             return state;

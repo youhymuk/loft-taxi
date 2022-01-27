@@ -1,4 +1,6 @@
-export const LOG_IN_REQUEST: string = 'LOG_IN';
-export const LOG_OUT: string = 'LOG_OUT';
-export const AUTHORIZE: string = 'AUTHORIZE';
-export const LOG_IN_SUCCESS: string = 'LOG_IN_SUCCESS';
+export const SIGN_IN: string = 'SIGN_IN';
+export const SIGN_OUT: string = 'SIGN_OUT';
+export const SIGN_UP: string = 'SIGN_UP';
+export const AUTH_REQUEST: string = 'AUTH_REQUEST';
+export const AUTH_SUCCESS: string = 'AUTH_SUCCESS';
+export const AUTH_ERROR: string = 'AUTH_ERROR';

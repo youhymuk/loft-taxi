@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { routePaths } from 'app/routes';
 import { Button, Loader } from 'app/common/components';
-import { useDispatch } from 'react-redux';
+import { signIn } from 'app/features/auth/store/authActions';
+import { selectAuthError, selectIsLoading } from 'app/features/auth/store/authSelector';
 
-import { authorize } from 'app/features/auth/store/authActions';
-
-type LoginPropsType = { isLoading: boolean };
-
-const LoginForm = ({ isLoading }: LoginPropsType): JSX.Element => {
+const SignInForm = (): JSX.Element => {
     const dispatch = useDispatch();
+
+    const isLoading = useSelector(selectIsLoading);
+    const error = useSelector(selectAuthError);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -24,12 +25,13 @@ const LoginForm = ({ isLoading }: LoginPropsType): JSX.Element => {
 
     const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
-        dispatch(authorize(email, password));
+        dispatch(signIn(email, password));
     };
 
     return (
         <>
             <form onSubmit={handleFormSubmit}>
+                {!!error && <p>{error}</p>}
                 {isLoading && <Loader />}
                 <h1>Войти</h1>
                 <label>
@@ -65,4 +67,4 @@ const LoginForm = ({ isLoading }: LoginPropsType): JSX.Element => {
     );
 };
 
-export default LoginForm;
+export default SignInForm;

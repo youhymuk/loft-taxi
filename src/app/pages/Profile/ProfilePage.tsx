@@ -1,6 +1,6 @@
 import React from 'react';
 import { Header } from 'app/common/components';
-import Profile from 'app/features/profile/Profile';
+import Profile from 'app/features/payment/Card';
 
 const ProfilePage = (): JSX.Element => (
     <>

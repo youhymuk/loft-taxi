@@ -1,5 +1,5 @@
 export default {
-    loginPage: (): string => '/',
+    signInPage: (): string => '/',
     registrationPage: (): string => '/registration',
     mapPage: (): string => '/map',
     profilePage: (): string => '/profile',

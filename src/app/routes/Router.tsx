@@ -5,9 +5,10 @@ import { routePaths } from 'app/routes';
 import PrivateRoute from './PrivateRoute';
 
 import MapPage from 'app/pages/MapPage';
-import ProfilePage from 'app/pages/ProfilePage';
-import AuthPage from 'app/pages/AuthPage';
+import ProfilePage from 'app/pages/Profile/ProfilePage';
 import ErrorPage from 'app/pages/ErrorPage';
+import SignUpPage from 'app/pages/Auth/SignUpPage';
+import SignInPage from 'app/pages/Auth/SignInPage';
 
 const Router: React.FC = () => (
     <BrowserRouter>
@@ -28,8 +29,8 @@ const Router: React.FC = () => (
                     </PrivateRoute>
                 }
             />
-            <Route path={routePaths.loginPage()} element={<AuthPage />} />
-            <Route path={routePaths.registrationPage()} element={<AuthPage registration />} />
+            <Route path={routePaths.signInPage()} element={<SignInPage />} />
+            <Route path={routePaths.registrationPage()} element={<SignUpPage />} />
             <Route path="*" element={<ErrorPage />} />
         </Routes>
     </BrowserRouter>

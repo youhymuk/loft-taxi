@@ -1,7 +1,6 @@
-export const saveToLocalStorage = (state: any) => {
+export const saveToLocalStorage = (token: string) => {
     try {
-        const serializedState = JSON.stringify(state);
-        localStorage.setItem('state', serializedState);
+        localStorage.setItem('token', token);
     } catch (e) {
         console.log(e);
     }
@@ -9,8 +8,7 @@ export const saveToLocalStorage = (state: any) => {
 
 export const loadFromLocalStorage = () => {
     try {
-        const serializedState = localStorage.getItem('state');
-        return serializedState === null ? undefined : JSON.parse(serializedState);
+        return localStorage.getItem('token');
     } catch (e) {
         console.log(e);
     }

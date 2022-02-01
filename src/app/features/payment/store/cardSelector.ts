@@ -6,4 +6,6 @@ const cardSelector = (state: StoreType): CardStateType => state.card;
 
 export const selectIsLoading = createSelector(cardSelector, (card: CardStateType) => card.isLoading);
 
-export const selectIsUploaded = createSelector(cardSelector, (card: CardStateType) => card.isUploaded);
+export const selectisUpdatedData = createSelector(cardSelector, (card: CardStateType) => card.isUpdatedData);
+
+export const selectCardData = createSelector(cardSelector, (card: CardStateType) => card.cardData);

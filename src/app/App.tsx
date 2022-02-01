@@ -1,17 +1,29 @@
-import React from 'react';
-import { MuiThemeProvider } from '@material-ui/core/styles';
-// @ts-ignore
-import { theme } from 'loft-taxi-mui-theme';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { styled } from '@mui/material/styles';
 
 import { Router } from 'app/routes';
-const App: React.FC = (): JSX.Element => {
+import { loadFromLocalStorage } from 'app/common/utils';
+import { setAuthToken } from 'app/features/auth/store/authActions';
+
+import map from 'app/assets/images/map.png';
+
+const App = ({ className }: any): JSX.Element => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const token = loadFromLocalStorage();
+        if (token) dispatch(setAuthToken(token));
+    }, []);
+
     return (
-        <MuiThemeProvider theme={theme}>
-            <div className="app">
-                <Router />
-            </div>
-        </MuiThemeProvider>
+        <div className={`${className} app`}>
+            <Router />
+        </div>
     );
 };
 
-export default App;
+export default styled(App)`
+    background: transparent url(${map});
+    background-size: cover;
+`;

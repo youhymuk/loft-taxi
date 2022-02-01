@@ -4,9 +4,12 @@ import {
     UPLOADING_CARD_DATA_SUCCESS,
     UPLOADING_CARD_DATA_ERROR,
     GET_CARD_DATA,
+    SET_CARD_DATA,
 } from 'app/features/payment/constants';
 import {
     GetCardDataActionsType,
+    GetCardResponseDataType,
+    SetCardDataActionsType,
     SetCardUploadingErrorActionsType,
     SetCardUploadingSuccessActionsType,
     UploadCardDataActionsType,
@@ -34,4 +37,9 @@ export const setUploadingError = (error: string): SetCardUploadingErrorActionsTy
 export const getCardData = (token: string): GetCardDataActionsType => ({
     type: GET_CARD_DATA,
     payload: { token },
+});
+
+export const setCardData = (data: GetCardResponseDataType): SetCardDataActionsType => ({
+    type: SET_CARD_DATA,
+    payload: { ...data },
 });

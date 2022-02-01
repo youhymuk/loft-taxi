@@ -5,7 +5,7 @@ import {
     startFetchingData,
     setUploadingSuccess,
     setUploadingError,
-    getCardData,
+    setCardData,
 } from 'app/features/payment/store/cardActions';
 import { GET_CARD_DATA, UPLOADING_CARD_DATA_REQUEST } from 'app/features/payment/constants';
 import { CardActionsType, UploadingCardResponseDataType } from 'app/features/payment/types';
@@ -25,12 +25,13 @@ function* uploadCardDataSaga({ payload }: CardActionsType) {
 }
 
 function* getCardDataSaga({ payload }: CardActionsType) {
-    const token = payload;
+    const { token }: any = payload;
 
     try {
         yield put(startFetchingData());
-        const { cardNumber, id } = yield call<any>(getCardData, token);
-        if (cardNumber && id) yield put(setUploadingSuccess());
+        // @ts-ignore
+        const { cardNumber }: GetCardResponseDataType = yield call<any>(cardAPI.getCardData, token);
+        if (cardNumber) yield put(setCardData({ cardNumber }));
     } catch (error: any) {
         console.log(error.message);
     }

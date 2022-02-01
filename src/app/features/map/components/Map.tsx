@@ -47,7 +47,7 @@ const Map: React.FC = (): JSX.Element => {
 
         const map = new mapboxgl.Map({
             container: mapContainer.current || '',
-            style: 'mapbox://styles/mapbox/outdoors-v11',
+            style: 'mapbox://styles/mapbox/dark-v9',
             center: [30.513378102508995, 50.44879488478449],
             zoom: 12,
         });

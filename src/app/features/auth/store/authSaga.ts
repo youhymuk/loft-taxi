@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { SIGN_UP, SIGN_IN } from 'app/features/auth/constants';
 import { makeAuthRequest, setAuthError, setAuthToken } from 'app/features/auth/store/authActions';
-import { authAPI } from 'app/common/utils';
+import { authAPI, saveToLocalStorage } from 'app/common/utils';
 import { AuthActionsType, AuthResponseDataType } from 'app/features/auth/types';
 
 function* signUpSagaWorker({ payload }: AuthActionsType) {
@@ -11,6 +11,7 @@ function* signUpSagaWorker({ payload }: AuthActionsType) {
 
         if (token) {
             yield put(setAuthToken(token));
+            saveToLocalStorage(token);
         } else {
             yield put(setAuthError(error ?? ''));
         }
@@ -26,6 +27,7 @@ function* signInSagaWorker({ payload }: AuthActionsType) {
 
         if (token) {
             yield put(setAuthToken(token));
+            saveToLocalStorage(token);
         } else {
             yield put(setAuthError(error ?? ''));
         }

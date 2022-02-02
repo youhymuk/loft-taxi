@@ -1,13 +1,20 @@
 export type CardStateType = {
     isLoading: boolean;
-    isUploaded: boolean;
+    isUpdatedData: boolean;
     error: string;
+    cardData: {
+        cardName: string;
+        cardNumber: string;
+        expiryDate: string;
+        cvc: string;
+    };
 };
 
 export type CardActionsType = {
     type: string;
     payload?: {
         error?: string;
+        token?: string;
     };
 };
 
@@ -38,12 +45,20 @@ export type SetCardUploadingSuccessActionsType = {
     type: string;
 };
 
+export type SetCardDataActionsType = {
+    type: string;
+    payload: GetCardResponseDataType;
+};
+
 export type UploadingCardResponseDataType = {
     success: boolean;
     error?: string;
 };
 
 export type GetCardResponseDataType = {
+    cardName?: string;
     cardNumber: string;
-    id: string;
+    expiryDate?: string;
+    cvc?: string;
+    id?: string;
 };

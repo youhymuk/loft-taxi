@@ -1,4 +1,12 @@
-import { AUTH_REQUEST, SIGN_UP, AUTH_SUCCESS, AUTH_ERROR, SIGN_OUT, SIGN_IN } from 'app/features/auth/constants';
+import {
+    AUTH_REQUEST,
+    SIGN_UP,
+    AUTH_SUCCESS,
+    AUTH_ERROR,
+    SIGN_OUT,
+    SIGN_IN,
+    CLEAR_AUTH_ERROR,
+} from 'app/features/auth/constants';
 import { AuthActionsType } from 'app/features/auth/types';
 
 export const makeAuthRequest = (): AuthActionsType => ({
@@ -27,4 +35,8 @@ export const setAuthToken = (token: string): AuthActionsType => ({
 export const setAuthError = (error: string): AuthActionsType => ({
     type: AUTH_ERROR,
     payload: { error },
+});
+
+export const clearAuthError = (): AuthActionsType => ({
+    type: CLEAR_AUTH_ERROR,
 });

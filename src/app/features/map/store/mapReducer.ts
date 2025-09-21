@@ -24,7 +24,7 @@ const mapReducer = (state: MapStateType = initialState, { type, payload = {} }: 
         case SET_COORDINATES:
             return {
                 ...state,
-                coordinates: payload?.coordinates,
+                coordinates: payload?.coordinates || [],
                 isLoading: false,
             };
         case CLEAR_ROUTE:
@@ -35,13 +35,13 @@ const mapReducer = (state: MapStateType = initialState, { type, payload = {} }: 
         case SET_ADDRESS_LIST:
             return {
                 ...state,
-                addressList: payload?.addressList,
+                addressList: payload?.addressList || [],
                 isLoading: false,
             };
         case SET_SERVER_ERROR:
             return {
                 ...state,
-                error: payload?.error,
+                error: payload?.error || '',
                 isLoading: false,
             };
         default:

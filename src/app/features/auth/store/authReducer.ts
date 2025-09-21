@@ -20,12 +20,12 @@ const authReducer = (state: AuthStateType = initialState, { type, payload = {} }
                 ...state,
                 isLoading: false,
                 error: '',
-                token: payload.token,
+                token: payload.token || '',
             };
         case AUTH_ERROR:
             return {
                 ...state,
-                error: payload.error,
+                error: payload.error || '',
                 isLoading: false,
             };
         case CLEAR_AUTH_ERROR:

@@ -35,13 +35,13 @@ const cardReducer = (state: CardStateType = initialState, { type, payload = {} }
             return {
                 ...state,
                 isLoading: false,
-                cardData: { ...payload },
+                cardData: { ...state.cardData, ...(payload as any) },
                 isUpdatedData: false,
             };
         case UPLOADING_CARD_DATA_ERROR:
             return {
                 ...state,
-                error: payload?.error,
+                error: payload?.error || '',
             };
         default:
             return state;

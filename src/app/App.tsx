@@ -1,29 +1,29 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { styled } from '@mui/material/styles';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
-import { Router } from 'app/routes';
 import { loadFromLocalStorage } from 'app/common/utils';
-import { setAuthToken } from 'app/features/auth/store/authActions';
+import { authSucceeded } from 'app/features/auth/store/authSlice';
+import { Router } from 'app/routes';
 
 import map from 'app/assets/images/map.png';
 
 const App = ({ className }: any): JSX.Element => {
-    const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
-    useEffect(() => {
-        const token = loadFromLocalStorage();
-        if (token) dispatch(setAuthToken(token));
-    }, []);
+	useEffect(() => {
+		const token = loadFromLocalStorage();
+		if (token) dispatch(authSucceeded(token));
+	}, []);
 
-    return (
-        <div className={`${className} app`}>
-            <Router />
-        </div>
-    );
+	return (
+		<div className={`${className} app`}>
+			<Router />
+		</div>
+	);
 };
 
 export default styled(App)`
-    background: transparent url(${map});
-    background-size: cover;
+	background: transparent url(${map});
+	background-size: cover;
 `;

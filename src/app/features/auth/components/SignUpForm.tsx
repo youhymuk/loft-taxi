@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Button, Loader } from 'app/common/components';
 import { SignUpSchema } from 'app/features/auth/shemas';
-import { clearAuthError, signUp } from 'app/features/auth/store/authActions';
 import {
 	selectAuthError,
 	selectIsLoading,
 } from 'app/features/auth/store/authSelector';
+import { clearAuthError, signUp } from 'app/features/auth/store/authSlice';
 import { routePaths } from 'app/routes';
 
 const SignUpForm = ({ className }: any): JSX.Element => {
@@ -32,7 +32,7 @@ const SignUpForm = ({ className }: any): JSX.Element => {
 				onSubmit={(values, { setSubmitting }) => {
 					const { email, name, surname, password } = values;
 
-					dispatch(signUp(email, password, name, surname));
+					dispatch(signUp({ email, password, name, surname }));
 					setSubmitting(false);
 				}}
 			>

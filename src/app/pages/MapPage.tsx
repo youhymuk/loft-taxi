@@ -7,15 +7,12 @@ import { selectAuthToken } from 'app/features/auth/store/authSelector';
 import Map from 'app/features/map/components/Map';
 import OrderForm from 'app/features/map/components/OrderForm/OrderForm';
 import {
-	clearRoute,
-	getAddressListRequest,
-} from 'app/features/map/store/mapActions';
-import {
 	selectCoordinates,
 	selectIsLoading,
 } from 'app/features/map/store/mapSelector';
-import { getCardData } from 'app/features/payment/store/cardActions';
+import { clearRoute, getAddressList } from 'app/features/map/store/mapSlice';
 import { selectCardData } from 'app/features/payment/store/cardSelector';
+import { getCardData } from 'app/features/payment/store/cardSlice';
 import { routePaths } from 'app/routes';
 
 const MapPage = ({ className }: any): JSX.Element => {
@@ -35,7 +32,7 @@ const MapPage = ({ className }: any): JSX.Element => {
 
 	useEffect(() => {
 		dispatch(getCardData(token));
-		dispatch(getAddressListRequest());
+		dispatch(getAddressList());
 	}, []);
 
 	return (

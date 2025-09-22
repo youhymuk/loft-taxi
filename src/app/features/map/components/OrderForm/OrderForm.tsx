@@ -10,8 +10,8 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Button } from 'app/common/components';
-import { getCoordinatesRequest } from 'app/features/map/store/mapActions';
 import { selectAddressList } from 'app/features/map/store/mapSelector';
+import { getCoordinates } from 'app/features/map/store/mapSlice';
 
 import arrow from 'app/assets/images/arrow.svg';
 
@@ -33,7 +33,7 @@ const OrderForm = ({ className }: any) => {
 
 	const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		dispatch(getCoordinatesRequest(from, to));
+		dispatch(getCoordinates({ from, to }));
 		setFrom('');
 		setTo('');
 	};
@@ -42,7 +42,7 @@ const OrderForm = ({ className }: any) => {
 		<Formik
 			initialValues={{ from: '', to: '' }}
 			onSubmit={(values, { setSubmitting }) => {
-				dispatch(getCoordinatesRequest(from, to));
+				dispatch(getCoordinates({ from, to }));
 				setSubmitting(false);
 			}}
 		>

@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Button, Loader } from 'app/common/components';
 import { SignInSchema } from 'app/features/auth/shemas';
-import { clearAuthError, signIn } from 'app/features/auth/store/authActions';
 import {
 	selectAuthError,
 	selectIsLoading,
 } from 'app/features/auth/store/authSelector';
+import { clearAuthError, signIn } from 'app/features/auth/store/authSlice';
 import { routePaths } from 'app/routes';
 
 const SignInForm = ({ className }: any) => {
@@ -31,7 +31,7 @@ const SignInForm = ({ className }: any) => {
 				validationSchema={SignInSchema}
 				onSubmit={(values, { setSubmitting }) => {
 					const { email, password } = values;
-					dispatch(signIn(email, password));
+					dispatch(signIn({ email, password }));
 					setSubmitting(false);
 				}}
 			>

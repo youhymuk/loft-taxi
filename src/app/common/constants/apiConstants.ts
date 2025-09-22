@@ -1,1 +1,1 @@
-export const BASE_URL: string = 'https://loft-taxi.glitch.me/';
+export const BASE_URL: string = 'http://localhost:4000/api/';

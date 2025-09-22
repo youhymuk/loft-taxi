@@ -13,7 +13,7 @@ const App = ({ className }: any): JSX.Element => {
 
 	useEffect(() => {
 		const token = loadFromLocalStorage();
-		if (token) dispatch(authSucceeded(token));
+		if (token) dispatch(authSucceeded({ token }));
 	}, []);
 
 	return (

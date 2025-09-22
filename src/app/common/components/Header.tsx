@@ -1,12 +1,11 @@
-import React from 'react';
+import { styled } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { styled } from '@mui/material';
 
-import { routePaths } from 'app/routes';
-import { signOut } from 'app/features/auth/store/authActions';
-import Logo from 'app/common/components/Logo/Logo';
 import Button from 'app/common/components/Button';
+import Logo from 'app/common/components/Logo/Logo';
+import { signOut } from 'app/features/auth/store/authActions';
+import { routePaths } from 'app/routes';
 
 const Header = ({ className }: any): JSX.Element => {
     const dispatch = useDispatch();
@@ -29,7 +28,7 @@ const Header = ({ className }: any): JSX.Element => {
                                 isActive ? 'header-nav-link header-nav-link-active' : 'header-nav-link'
                             }
                             to={routePaths.mapPage()}>
-                            Карта
+                            Map
                         </NavLink>
                     </li>
                     <li className="header-nav-list-item">
@@ -38,12 +37,12 @@ const Header = ({ className }: any): JSX.Element => {
                                 isActive ? 'header-nav-link header-nav-link-active' : 'header-nav-link'
                             }
                             to={routePaths.profilePage()}>
-                            Профиль
+                            Profile
                         </NavLink>
                     </li>
                     <li className="header-nav-list-item">
                         <Button className="header-nav-link" type="button" onClick={handleLogOut}>
-                            Выйти
+                            Log out
                         </Button>
                     </li>
                 </ul>

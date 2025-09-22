@@ -1,17 +1,16 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Field, Form, Formik } from 'formik';
 import { InputLabel } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { Field, Form, Formik } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { routePaths } from 'app/routes';
-import { selectAuthToken, selectIsLoading } from 'app/features/auth/store/authSelector';
-import { selectCardData, selectisUpdatedData } from 'app/features/payment/store/cardSelector';
-import { makeCardDataUploadingRequest } from 'app/features/payment/store/cardActions';
 import { Button, Loader } from 'app/common/components';
+import { selectAuthToken, selectIsLoading } from 'app/features/auth/store/authSelector';
+import { makeCardDataUploadingRequest } from 'app/features/payment/store/cardActions';
+import { selectCardData, selectisUpdatedData } from 'app/features/payment/store/cardSelector';
+import { routePaths } from 'app/routes';
 
-import logoIcon from 'app/assets/images/logo-icon.svg';
 import chip from 'app/assets/images/chip.svg';
+import logoIcon from 'app/assets/images/logo-icon.svg';
 
 const Profile = ({ className }: any) => {
     const dispatch = useDispatch();
@@ -24,11 +23,11 @@ const Profile = ({ className }: any) => {
     return (
         <section className={className}>
             <header className="profile-header">
-                <h1 className="profile-title">Профиль</h1>
+                <h1 className="profile-title">Profile</h1>
                 <p className="profile-desc">
                     {isCardDataUploaded
-                        ? 'Платёжные данные обновлены. Теперь вы можете заказывать такси.'
-                        : 'Введите платежные данные'}
+                        ? 'Payment details updated. You can now order a taxi.'
+                        : 'Enter payment details'}
                 </p>
             </header>
             <div className="profile-content-wrap">
@@ -44,11 +43,11 @@ const Profile = ({ className }: any) => {
                             {({ isSubmitting }) => (
                                 <Form className="profile-form">
                                     <InputLabel className="profile-field-label">
-                                        Имя владельца
+                                        Owner's name
                                         <Field className="profile-field" type="text" name="cardName" />
                                     </InputLabel>
                                     <InputLabel className="profile-field-label">
-                                        Номер карты
+                                        Card number
                                         <Field className="profile-field" type="number" name="cardNumber" />
                                     </InputLabel>
                                     <div className="profile-fields-wrap">
@@ -62,7 +61,7 @@ const Profile = ({ className }: any) => {
                                         </InputLabel>
                                     </div>
                                     <Button className="profile-save-button" type="submit" disabled={isSubmitting}>
-                                        Сохранить
+                                        Save
                                     </Button>
                                 </Form>
                             )}
@@ -78,7 +77,7 @@ const Profile = ({ className }: any) => {
                     </>
                 ) : (
                     <Button className="profile-go-to-button" type="link" to={routePaths.mapPage()}>
-                        Перейти на карту
+                    Go to map
                     </Button>
                 )}
             </div>
